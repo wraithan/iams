@@ -8,3 +8,9 @@ Initial design (before writting any code) is to use Python and use its socket fu
 Going to have the recieving application send a message in acknowledgement and verify that a message is only acted on if the ID has timed out. 
 Going to use a standard queue for storing messages until they are acknowledged as recieved. 
 Test does not specify whether the app can/should be multithreaded, considering using stackless to allow for using channels to communication between the coroutines which would make recieving messages a lot more certain. That or just have the messaging object checked on as part of a event loop style.
+Initial handshake will send the location where messages can be sent to the specific applicaition.
+
+Two example apps:
+1. application that send anything written on stdin to the server specified on the commandline and writes anything recieved to stdout.
+
+2. server that responds to properly formed requests with the requested data, and says something to the client application if the request is malformed.
