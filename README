@@ -14,3 +14,11 @@ Two example apps:
 1. application that send anything written on stdin to the server specified on the commandline and writes anything recieved to stdout.
 
 2. server that responds to properly formed requests with the requested data, and says something to the client application if the request is malformed.
+
+Objects:
+ChrisIPCClient -- An object that uses JSON to serialize objects and sends them to the socket specified at objection creation.
+ChrisIPCServer -- An object that binds to an address or unix socket location. Uses JSON deserialize recieved objects and adds them to a queue.
+
+ChrisIPCClient's send method will have a way of indicating that it expects a message back, if it expects a message back, it will ignore the first ack and wait for a message with content with the same ID. This allows the server to not have to worry about acks and be able to send the data again if it is requested again, allowing the client to be the only one that worries about acks.
+
+
